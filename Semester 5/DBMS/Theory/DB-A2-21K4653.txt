@@ -1,0 +1,23 @@
+Q2:
+1.
+Text : Find all pizzerias frequented by person under the age of 18.
+Query: select pizzeria from frequents join person using(name) where age < 18;
+
+2.
+Text : Find the names of all female who eats either mushroom or pepperoni pizza
+Query: select name from Person P join Eats E using(name) where P.gender= 'Female' and (E.pizza='mushroom' or E.pizza = 'pepperoni');
+
+3.
+Text: Find the pizzerias that serves pizza to Amy to eat for less than 10;
+Query: select pizzeria from Eats E join Serves S using (pizzeria) where E.name='Amy' And S.price < 10;
+
+4.
+Text: Find the names of all people who frequent only pizzerias serving at least one pizza they eat.
+Query: select t2.name from frequents t1 right join (select * from eats join serves using(pizza)) t2 on t1.name  = t2.name and t1.pizzeria = t2.pizzeria where t1.pizzeria is null;
+
+
+5.
+Text: Find the names of all people who frequent every pizzerias serving atleast one pizza they eat.
+Query: select * from frequents t1 join (select * from eats join serves using(pizza)) t2 on t1.name  = t2.name and t1.pizzeria = t2.pizzeria;
+
+
